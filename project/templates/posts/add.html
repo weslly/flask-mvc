@@ -1,0 +1,11 @@
+{% extends "layout/layout.html" %}
+{% block body %}
+  <form action="{{ url_for('add') }}" method="post">
+    {{ form.csrf_token }}
+    <dl>
+      <dd>{{ form.title.label }} {{ form.title(size=20) }} {{ render_error(form.title) }}</dd>
+      <dd>{{ form.content.label }} {{ form.content(size=20) }} {{ render_error(form.content) }}</dd>
+      <dd><input type="submit" value="Add"/></dd>
+    </dl>
+  </form>
+{% endblock %}
