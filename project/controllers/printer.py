@@ -17,7 +17,6 @@ def printer():
     form = MyForm()
 
     if request.method == 'POST' and form.validate_on_submit():
-        # return str()
         from project.models.Printer import Printer
         printer = Printer()
         printer.show_string(form.text.data)
