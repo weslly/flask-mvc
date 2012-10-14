@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from project import app
-from flask import render_template, request
+from flask import render_template, request, get_flashed_messages
 from flask.ext.wtf import Form, TextField, validators, Required
 
 
@@ -12,7 +12,6 @@ class CreateForm(Form):
 def start():
     return render_template('printer/index.html')
 
-
 @app.route('/print', methods=['GET', 'POST'])
 def printer():
     form = CreateForm(request.form)
@@ -21,4 +20,5 @@ def printer():
         printer = Printer()
         printer.show_string(form.text.data)
         return render_template('printer/index.html')
+
     return render_template('printer/print.html', form=form)

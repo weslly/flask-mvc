@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import flash
 
-
 class Printer(object):
 
     def show_string(self, text):
