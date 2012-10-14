@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from project import app
 from flask import render_template, request, get_flashed_messages
-from flask.ext.wtf import Form, TextField, validators, Required
+from flask.ext.wtf import Form, TextField, Required
 
 
-class CreateForm(Form):
-    text = TextField(u'Text:', [validators.Length(min=1, max=20)])
+class MyForm(Form):
+    text = TextField('Text: ', validators=[Required()])
 
 
 @app.route('/')
@@ -14,11 +14,14 @@ def start():
 
 @app.route('/print', methods=['GET', 'POST'])
 def printer():
-    form = CreateForm(request.form)
-    if request.method == 'POST' and form.validate():
+    form = MyForm()
+
+    if request.method == 'POST' and form.validate_on_submit():
+        # return str()
         from project.models.Printer import Printer
         printer = Printer()
         printer.show_string(form.text.data)
         return render_template('printer/index.html')
 
-    return render_template('printer/print.html', form=form)
+    else:
+        return render_template('printer/print.html', form=form)
