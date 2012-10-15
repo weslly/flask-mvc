@@ -1,11 +1,31 @@
 {% extends "layout/layout.html" %}
 {% block body %}
-  <form action="{{ url_for('add') }}" method="post">
-    {{ form.csrf_token }}
-    <dl>
-      <dd>{{ form.title.label }} {{ form.title(size=20) }} {{ render_error(form.title) }}</dd>
-      <dd>{{ form.content.label }} {{ form.content(size=20) }} {{ render_error(form.content) }}</dd>
-      <dd><input type="submit" value="Add"/></dd>
-    </dl>
-  </form>
+<div class="page-header">
+    <h1>Add New Post</h1>
+</div>
+<div class="span7">
+    <form action="{{ url_for('posts_add') }}" method="post">
+        {{ form.csrf_token }}
+
+        <div class="control-group">
+            <label class="control-label">{{ form.title.label }}</label>
+            <div class="controls">
+                {{ form.title(size=20) }}
+                {{ render_error(form.title) }}
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label">{{ form.content.label }}</label>
+            <div class="controls">
+                {{ form.content(class_="span5", rows="6") }}
+                {{ render_error(form.content) }}
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <input type="submit" class="btn btn-primary" value="Add"/>
+        </div>
+    </form>
+</div>
 {% endblock %}

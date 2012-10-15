@@ -1,8 +1,8 @@
 {% extends "layout/layout.html" %}
 {% block body %}
-<ul>
-  <p>
-    <a href="{{ url_for('add') }}">Click here to add a new post!</a>
-  </p>
-</ul>
+
+<p>
+    <a class="btn btn-primary" href="{{ url_for('posts_add') }}">Click here to add a new post!</a>
+</p>
+
 {% endblock %}

@@ -1,14 +1,42 @@
 <!doctype html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Flask-MVC</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='components/modernizr/modernizr.js') }}"></script>
 </head>
 <body>
-    <a href="{{ url_for('index') }}">Home</a>
-    <div class="page">
-        <h1>Flask MVC Boilerplate</h1>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+
+                <a class="brand" href="{{ url_for('index') }}">Flask-MVC</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('posts_index') }}">Posts</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
         {% for message in get_flashed_messages() %}
-        <div class="flash">{{ message }}</div>
+        <div class="alert">{{ message }}</div>
         {% endfor %}
         {% macro render_error(field) %}
         {% if field.errors %}
@@ -17,5 +45,11 @@
         {% endmacro %}
         {% block body %}{% endblock %}
     </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{ url_for('static', filename='components/jquery/jquery.js') }}"><\/script>')</script>
+    <script src="{{ url_for('static', filename='js/plugins-ck.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main-ck.js') }}"></script>
+
 </body>
 </html>

@@ -11,16 +11,17 @@ class AddPostForm(Form):
 
 
 @app.route('/posts')
-def index():
+def posts_index():
     return render_template('posts/index.html')
 
 
 @app.route('/posts/view/<slug>')
-def view(slug):
+def posts_view(slug):
     return render_template('posts/view.html')
 
+
 @app.route('/posts/add', methods=('GET', 'POST'))
-def add():
+def posts_add():
     form = AddPostForm()
 
     if request.method == 'POST' and form.validate_on_submit():
