@@ -11,8 +11,3 @@ A simple boilerplate application following the MVC pattern using Flask micro Pyt
 
     python runserver.py
 
-## Extensions
-
-- Flask-Assets
-- Flask-SQLAlchemy
-- Flask-WTF
